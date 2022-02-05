@@ -3932,7 +3932,9 @@ tbody.collapse.show {
 .alert-danger {
   color: #721c24;
   background-color: #f8d7da;
-  border-color: #f5c6cb; }
+  border-color: #f5c6cb;width: 100%;
+  font-size: 20px;
+  font-weight: bold; }
 
 .alert-danger hr {
   border-top-color: #f1b0b7; }

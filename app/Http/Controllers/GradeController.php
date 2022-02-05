@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Grade;
 class GradeController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class GradeController extends Controller
      */
     public function index()
     {
-        return view('pages.grades');
+        $grades = Grade::all();
+        return view('pages.Grades.grades', compact('grades'));
     }
 
     /**
@@ -23,7 +24,7 @@ class GradeController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.Grades.create');
     }
 
     /**
@@ -34,7 +35,18 @@ class GradeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'ar_name'   => 'required|unique:grades,name->ar',
+            'en_name'   => 'required|unique:grades,name->en',
+            'ar_notes'  => 'required|unique:grades,notes->ar',
+            'en_notes'  => 'required|unique:grades,notes->en',
+        ]);
+        $grade = new Grade();
+        $grade->name = ['ar' => $request->ar_name, 'en' => $request->en_name];
+        $grade->notes = ['ar' => $request->ar_notes, 'en' => $request->en_notes];
+        $grade->save();
+        toastr()->success(__('site.added_successfully'));
+        return redirect()->route('grades.index');
     }
 
     /**
@@ -56,29 +68,29 @@ class GradeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $grade = Grade::find($id);
+        return view('pages.Grades.edit', compact('grade'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
-    {
-        //
+    { 
+    $request->validate([
+        'ar_name'   => 'required|unique:grades,name->ar,'.$id,
+        'en_name'   => 'required|unique:grades,name->en,'.$id,
+        'ar_notes'  => 'required|unique:grades,notes->ar,'.$id,
+        'en_notes'  => 'required|unique:grades,notes->en,'.$id,
+    ]);
+        $grade = Grade::find($id);
+        $grade->name = ['ar' => $request->ar_name, 'en' => $request->en_name];
+        $grade->notes = ['ar' => $request->ar_notes, 'en' => $request->en_notes];
+        $grade->save();
+        toastr()->success(__('site.updated_successfully'));
+        return redirect()->route('grades.index');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $grade = Grade::find($id);
+        $grade->delete();
+        toastr()->success(__('site.deleted_successfully'));
+        return redirect()->route('grades.index');
     }
 }

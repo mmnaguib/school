@@ -3,9 +3,8 @@
 <!-- plugins-jquery -->
 <script src="{{ URL::asset('assets/js/plugins-jquery.js') }}"></script>
 <!-- plugin_path -->
-<script>
-    var plugin_path = 'js/';
-
+<script type="text/javascript">
+    var plugin_path = '{{ asset('assets/js') }}/';
 </script>
 
 <!-- chart -->
@@ -19,8 +18,7 @@
 <!-- datepicker -->
 <script src="{{ URL::asset('assets/js/datepicker.js') }}"></script>
 <!-- sweetalert2 -->
-<script src="{{ URL::asset('assets/js/sweetalert2.js') }}"></script>
-<!-- toastr -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 @yield('js')
 <script src="{{ URL::asset('assets/js/toastr.js') }}"></script>
 <!-- validation -->

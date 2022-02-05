@@ -919,11 +919,8 @@ var _arr  = {};
         POTENZA.wizardform(),
         POTENZA.navactivation(),
         POTENZA.Fullscreenwindow();
+        
     });
 })(jQuery);
-
-
-
-
 
 
