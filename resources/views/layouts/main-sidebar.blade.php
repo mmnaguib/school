@@ -24,6 +24,22 @@
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
                         <a href="{{ route('grades.index') }}">@lang('site.grades')</a>
                     </li>
+                    <li>
+
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#classroom">
+                            <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">@lang('site.classroom')</span>
+                            </div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="classroom" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('classroom.index') }}">@lang('site.classroom')</a> </li>
+                            <li> <a href="index-02.html">Dashboard 02</a> </li>
+                            <li> <a href="index-03.html">Dashboard 03</a> </li>
+                            <li> <a href="index-04.html">Dashboard 04</a> </li>
+                            <li> <a href="index-05.html">Dashboard 05</a> </li>
+                        </ul>
+                    </li>
 
                 </ul>
             </div>

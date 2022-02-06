@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Grade;
+use App\Models\class_room;
 class GradeController extends Controller
 {
     /**
@@ -72,7 +73,7 @@ class GradeController extends Controller
         return view('pages.Grades.edit', compact('grade'));
     }
     public function update(Request $request, $id)
-    { 
+    {
     $request->validate([
         'ar_name'   => 'required|unique:grades,name->ar,'.$id,
         'en_name'   => 'required|unique:grades,name->en,'.$id,
@@ -88,9 +89,15 @@ class GradeController extends Controller
     }
     public function destroy($id)
     {
-        $grade = Grade::find($id);
-        $grade->delete();
-        toastr()->success(__('site.deleted_successfully'));
-        return redirect()->route('grades.index');
+        $classes = class_room::where('grade_id', $id)->pluck('grade_id')->count();
+        if($classes > 0){
+            toastr()->error(__('site.this_grade_has_many_classrooms'));
+            return redirect()->route('grades.index');
+        }else{
+            $grade = Grade::find($id);
+            $grade->delete();
+            toastr()->success(__('site.deleted_successfully'));
+            return redirect()->route('grades.index');
+        }
     }
 }

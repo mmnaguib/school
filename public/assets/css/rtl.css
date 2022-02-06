@@ -23049,15 +23049,17 @@ select.form-control-sm:not([size]):not([multiple]) {
 
 /*form-control*/
 .form-control {
-  border-radius: 3px;
-  font-size: 13px;
-  height: auto;
-  line-height: 1.33333;
-  padding: 15px 15px 15px 20px;
-  background: #f6f7f8;
-  color: #323232;
-  border: 0px solid transparent;
-  box-shadow: none; }
+    border-radius: 5px !important;
+    font-size: 13px;
+    height: 32px;
+    line-height: 1.33333;
+    padding: 15px 15px 15px 20px;
+    color: #323232;
+    border: 1px solid #ced4da;
+    box-shadow: none;
+}
+select.form-control{padding:0 !important;height: 32px !important;}
+
   .form-control label {
     color: #323232;
     margin-top: 8px;

@@ -16,8 +16,8 @@ class CreateClassRoomsTable extends Migration
         Schema::create('class_rooms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('classroom_name', 255);
-            $table->integer('grade_id');
-            $table->forign('grade_id')->refrences('id')->on('grades');
+            $table->integer('grade_id')->unsigned();
+            $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
