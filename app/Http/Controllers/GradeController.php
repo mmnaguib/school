@@ -12,7 +12,7 @@ class GradeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $grades = Grade::all();
         return view('pages.Grades.grades', compact('grades'));

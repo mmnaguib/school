@@ -11,5 +11,9 @@ class Grade extends Model
     use HasFactory;
     use HasTranslations;
     protected $fillable = ['name', 'notes'];
-    public $translatable  = ['name', 'notes']; 
+    public $translatable  = ['name', 'notes'];
+
+    public function sections() {
+        return $this->hasMany(Section::class, 'grade_id');
+    }
 }

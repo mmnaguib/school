@@ -67,7 +67,7 @@
 
 <script>
 
-          $('.deleteBtn').click(function (e) {
+        $('.deleteBtn').click(function (e) {
             var that = $(this)
             e.preventDefault();
             var n = new Noty({
@@ -84,6 +84,6 @@
                 ]
             });
             n.show();
-        });//end of delete              
+        });//end of delete
 </script>
 @endsection

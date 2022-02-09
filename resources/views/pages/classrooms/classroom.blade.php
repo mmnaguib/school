@@ -30,12 +30,32 @@
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_classroom">
-                    @lang('site.new_classroom')
-                </button>
-                <button type="button" class="btn btn-danger" id="btn_delete_all">
-                    @lang('site.delete_selected_rows')
-                </button>
+                <div class="row" style="margin-bottom: 15px">
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#add_classroom">
+                            @lang('site.new_classroom')
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                        <button  type="button" class="btn btn-block btn-danger" data-toggle="modal" id="btn_delete_all">
+                            @lang('site.delete_selected_rows')
+                        </button>
+                    </div>
+                    <div class="col-md-3">
+                        <form method="post" action="{{ route('fiterClasses') }}"> @csrf
+                            <select class="form-control" data-style="btn-info" name="class_filter" required onchange="this.form.submit()">
+                                <option value="" selected disabled>@lang('site.grades')</option>
+                                @foreach ($grades as $grade)
+                                <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                @endforeach
+                            </select>
+                        </form>
+                    </div>
+                </div>
+
+
+
+
                 <table id="datatable" class="table table-striped table-bordered p-0">
                     <thead>
                         <tr>
@@ -47,7 +67,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($classes as $index => $class)
+                        @if(isset($details))
+                            <?php $listclasses = $details ?>
+                        @else
+                            <?php $listclasses = $classes ?>
+                        @endif
+                        @foreach ($listclasses as $index => $class)
                             <tr>
                                 <th><input type="checkbox" class="box" value="{{ $class->id }}"/></th>
                                 <td>{{ $index + 1 }}</td>
@@ -63,49 +88,49 @@
                                                 class="fa fa-trash"></i> @lang('site.delete')</button>
                                     </form>
                                 </td>
-                                    <div class="modal fade" id="edit_classroom{{ $class->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">@lang('site.new_classroom')</h5>
-                                                    <button type="button" class="btn btn-close" data-dismiss="modal"
-                                                        aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                </div>
-                                                <form method="post" action="{{ route('classroom.update', $class->id) }}"> @csrf @method('PUT')
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            @foreach (config('translatable.locales') as $locale)
-                                                                <div class="col-md-6">
-                                                                    <label class="col-md-12">@lang('site.' .
-                                                                        $locale . '.classroom')</label>
-                                                                    <input type="text"
-                                                                        name="{{ $locale }}_name"
-                                                                        class="form-control" value="{{ $class->setLocale($locale)->classroom_name }}"/>
-                                                                </div>
-                                                            @endforeach
-                                                            <div class="col-md-12">
-                                                                <label
-                                                                    class="col-md-12">@lang('site.grade_name')</label>
-                                                                <select name="grades" class="form-control">
-                                                                    <option value="" disabled selected>@lang('site.grades')</option>
-                                                                    @foreach ($grades as $grade)
-                                                                    <option {{ ($class->grade_id == $grade->id) ? 'selected' : '' }} value="{{ $grade->id }}">{{ $grade->name }}
-                                                                    </option>
-                                                                    @endforeach
-                                                                </select>
+                                <div class="modal fade" id="edit_classroom{{ $class->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">@lang('site.new_classroom')</h5>
+                                                <button type="button" class="btn btn-close" data-dismiss="modal"
+                                                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            </div>
+                                            <form method="post" action="{{ route('classroom.update', $class->id) }}"> @csrf @method('PUT')
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        @foreach (config('translatable.locales') as $locale)
+                                                            <div class="col-md-6">
+                                                                <label class="col-md-12">@lang('site.' .
+                                                                    $locale . '.classroom')</label>
+                                                                <input type="text"
+                                                                    name="{{ $locale }}_name"
+                                                                    class="form-control" value="{{ $class->setLocale($locale)->classroom_name }}"/>
                                                             </div>
+                                                        @endforeach
+                                                        <div class="col-md-12">
+                                                            <label
+                                                                class="col-md-12">@lang('site.grade_name')</label>
+                                                            <select name="grades" class="form-control">
+                                                                <option value="" disabled selected>@lang('site.grades')</option>
+                                                                @foreach ($grades as $grade)
+                                                                <option {{ ($class->grade_id == $grade->id) ? 'selected' : '' }} value="{{ $grade->id }}">{{ $grade->name }}
+                                                                </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-sm btn-secondary"
-                                                            data-dismiss="modal">@lang('site.close')</button>
-                                                        <button type="submit" class="btn btn-sm btn-info">@lang('site.edit')</button>
-                                                    </div>
-                                                </form>
-                                            </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-sm btn-secondary"
+                                                        data-dismiss="modal">@lang('site.close')</button>
+                                                    <button type="submit" class="btn btn-sm btn-info">@lang('site.edit')</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
+                                </div>
                             </tr>
                         @endforeach
                     </tbody>
@@ -173,6 +198,29 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="delete_all_modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">@lang('site.new_classroom')</h5>
+                                <button type="button" class="btn btn-close" data-dismiss="modal"
+                                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            </div>
+                            <form method="post" action="{{ route('delete_all') }}"> @csrf
+                                <div class="modal-body">
+                                    <strong class="text-danger">@lang('site.confirm_all_delete')</strong>
+                                    <input type="hidden" id="delete_all_id" name="all_delete_id" value="" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-sm btn-secondary"
+                                        data-dismiss="modal">@lang('site.close')</button>
+                                    <button type="submit" class="btn btn-sm btn-danger">@lang('site.delete')</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -204,18 +252,15 @@
         n.show();
     }); //end of delete
 
-    function checkAll(className, ele) {
-        var elements = document.getElementsByClassName(className);
-        var length = elements.length;
-        if(ele.checked){
-            for(var i=0;i<length;i++){
-                elements[i].checked = true;
-            }
-        }else{
-            for(var i=0;i<length;i++){
-                elements[i].checked = false;
-            }
+    $('#btn_delete_all').click(function(e) {
+        var selected = new Array();
+        $('#datatable input[type=checkbox]:checked').each(function() {
+            selected.push(this.value);
+        });
+        if(selected.length > 1){
+            $('#delete_all_modal').modal('show');
+            $('input[id="delete_all_id"]').val(selected);
         }
-    }
+    });
 </script>
 @endsection

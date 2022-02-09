@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\GradeController;
+use App\Http\Controllers\Sections;
+use App\Http\Controllers\SectionsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -25,4 +27,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('grades', GradeController::class);
     Route::resource('classroom', ClassroomController::class);
+    Route::resource('sections', SectionsController::class);
+    Route::get('classes/{id}', [SectionsController::class,'getClasses']);
+    Route::post('delete_all', [ClassroomController::class,'delete_all'])->name('delete_all');
+    Route::post('fiterClasses', [ClassroomController::class,'fiterClasses'])->name('fiterClasses');
 });

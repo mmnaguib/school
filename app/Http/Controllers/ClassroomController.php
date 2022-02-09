@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
 {
-    public function index()
-    {
+    public function index(Request $request){
         $classes = class_room::all();
         $grades = Grade::all();
         return view('pages.classrooms.classroom', compact('classes', 'grades'));
@@ -36,7 +35,6 @@ class ClassroomController extends Controller
         $request->validate([
                 'listclasses.*.ar_name' => 'required',
                 'listclasses.*.en_name' => 'required',
-                'grades'  => 'required',
             ]);
         $listclasses = $request->listclasses;
         foreach($listclasses as $class){
@@ -106,5 +104,17 @@ class ClassroomController extends Controller
         $classroom->delete();
         toastr()->success(__('site.deleted_successfully'));
         return redirect()->route('classroom.index');
+    }
+
+    public function delete_all(Request $request){
+        $all_delete_id = explode(',', $request->all_delete_id);
+        class_room::whereIn('id', $all_delete_id)->delete();
+        toastr()->success(__('site.deleted_successfully'));
+        return redirect()->route('classroom.index');
+    }
+    public function fiterClasses(Request $request){
+        $grades = Grade::all();
+        $search = class_room::select('*')->where('grade_id','=',$request->class_filter)->get();
+        return view('pages.classrooms.classroom', compact('grades'))->withDetails($search);
     }
 }
