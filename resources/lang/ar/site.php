@@ -29,5 +29,8 @@ return [
     'confirm_all_delete'                =>  'هل متأكد من حذف العناصر المحددة ؟',
     'sections'                          => 'الاقسام',
     'new_section'                       => 'اصف قسم',
-    'section_name'                       => 'اسم الصف',
+    'section_name'                       => 'اسم القسم',
+    'Status_Section_yes'                => 'نشط',
+    'Status_Section_No'                => 'غير نشط',
+    'status'                            => 'الحالة'
 ];

@@ -13,7 +13,8 @@ class Section extends Model
     protected $fillable  = ['section_name', 'grade_id','class_id','status'];
     public $translatable  = ['section_name'];
 
-    public function classes() {
-        return $this->belongsTo('App\models\class_room', 'class_id');
+    public function My_classs()
+    {
+        return $this->belongsTo(class_room::class, 'class_id');
     }
 }

@@ -11,8 +11,11 @@ class SectionsController extends Controller
 {
     public function index()
     {
-        $grades = Grade::with(['sections'])->get();
-        return view('pages.sections.sections', compact('grades'));
+        $Grades = Grade::with(['Sections'])->get();
+
+        $list_Grades = Grade::all();
+
+        return view('pages.Sections.Sections',compact('Grades','list_Grades'));
     }
 
     /**
@@ -36,11 +39,12 @@ class SectionsController extends Controller
         $request->validate([
             'ar_name'   => 'required',
             'en_name'   => 'required',
+            'Grade_id'  => 'required'
         ]);
         $section = new Section();
         $section->section_name = ['ar' => $request->ar_name, 'en' => $request->en_name];
-        $section->grade_id = $request->grades;
-        $section->class_id = $request->classrooms;
+        $section->grade_id = $request->Grade_id;
+        $section->class_id = $request->Class_id;
         $section->status   = 1;
         $section->save();
         toastr()->success(__('site.added_successfully'));
@@ -78,7 +82,24 @@ class SectionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $request->validate([
+            'ar_name'   => 'required',
+            'en_name'   => 'required',
+            'Grade_id'  => 'required'
+        ]);
+        $section = Section::find($id);
+        $section->section_name = ['ar' => $request->ar_name, 'en' => $request->en_name];
+        $section->grade_id = $request->Grade_id;
+        $section->class_id = $request->Class_id;
+        if(isset($request->status)) {
+            $section->status = 1;
+        } else {
+            $section->status = 2;
+        }
+        $section->save();
+        toastr()->success(__('site.updated_successfully'));
+        return redirect()->route('sections.index');
     }
 
     /**
@@ -89,7 +110,10 @@ class SectionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $section = Section::find($id);
+        $section->delete();
+        toastr()->error(__('site.deleted_successfully'));
+        return redirect()->route('sections.index');
     }
     public function getClasses($id){
         $list_classes = class_room::where('grade_id', $id)->pluck("classroom_name", "id");

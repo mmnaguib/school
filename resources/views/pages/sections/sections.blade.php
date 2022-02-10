@@ -1,148 +1,277 @@
 @extends('layouts.master')
 @section('css')
-@toastr_css
+    @toastr_css
 @section('title')
     @lang('site.sections')
 @stop
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
-<div class="page-title">
-    <div class="row">
-        <div class="col-sm-6">
-            <h4 class="mb-0"> @lang('site.sections')</h4>
-        </div>
-        <div class="col-sm-6">
-            <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-                <li class="breadcrumb-item"><a href="#" class="default-color">Home</a></li>
-                <li class="breadcrumb-item active">@lang('site.sections')</li>
-            </ol>
-        </div>
-    </div>
-</div>
+@section('PageTitle')
+    @lang('site.sections')
+@stop
 <!-- breadcrumb -->
 @endsection
 @section('content')
 <!-- row -->
 <div class="row">
-    @include('partials._errors')
     <div class="col-md-12 mb-30">
         <div class="card card-statistics h-100">
             <div class="card-body">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_section">
-                @lang('site.new_section')
-                </button>
-                {{ dd($grades) }}
-                <div class="accordion gray plus-icon round">
-                    @foreach ($grades as $grade_list)
-                    <div class="acd-group">
-                        <a href="#" class="acd-heading">{{ $grade_list->name }}</a>
-                        <div class="acd-des">
-                            <table id="datatable" class="table table-striped table-bordered p-0">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>@lang('site.section_name')</th>
-                                        <th>@lang('site.classroom_name')</th>
-                                        <th>@lang('site.actions')</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($grades as $index => $section)
-                                    <tr>
-                                        <td>{{ $index + 1 }}</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#edit_section{{ $section->id }}">
-                                                <i class="fa fa-edit"></i> @lang('site.edit')
-                                            </button>
-                                            <form method="POST" action="{{ route('sections.destroy', $section->id) }}"
-                                                style="display: inline-block"> @csrf @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm deleteBtn"><i
-                                                        class="fa fa-trash"></i> @lang('site.delete')</button>
-                                            </form>
-                                        </td>
-                                        <div class="modal fade" id="edit_section{{ $section->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                        aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">@lang('site.new_classroom')</h5>
-                                                        <button type="button" class="btn btn-close" data-dismiss="modal"
-                                                            aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <a class="button x-small" href="#" data-toggle="modal" data-target="#add_section">
+                    @lang('site.new_section')</a>
+            </div>
+
+            @include('partials._errors')
+            <div class="card card-statistics h-100">
+                <div class="card-body">
+                    <div class="accordion gray plus-icon round">
+
+                        @foreach ($Grades as $Grade)
+                            <div class="acd-group">
+                                <a href="#" class="acd-heading">{{ $Grade->name }}</a>
+                                <div class="acd-des">
+
+                                    <div class="row">
+                                        <div class="col-xl-12 mb-30">
+                                            <div class="card card-statistics h-100">
+                                                <div class="card-body">
+                                                    <div class="d-block d-md-flex justify-content-between">
+                                                        <div class="d-block">
+                                                        </div>
                                                     </div>
-                                                    <form method="post" action="{{ route('sections.update', $section->id) }}"> @csrf @method('PUT')
-                                                        <div class="modal-body">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-sm btn-secondary"
-                                                                data-dismiss="modal">@lang('site.close')</button>
-                                                            <button type="submit" class="btn btn-sm btn-info">@lang('site.edit')</button>
-                                                        </div>
-                                                    </form>
+                                                    <div class="table-responsive mt-15">
+                                                        <table class="table center-aligned-table mb-0">
+                                                            <thead>
+                                                                <tr class="text-dark">
+                                                                    <th>#</th>
+                                                                    <th>@lang('site.section_name')</th>
+                                                                    <th>@lang('site.classroom_name')</th>
+                                                                    <th>@lang('site.status')</th>
+                                                                    <th>@lang('site.actions')</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php $i = 0; ?>
+                                                                @foreach ($Grade->Sections as $list_Sections)
+                                                                    <tr>
+                                                                        <?php $i++; ?>
+                                                                        <td>{{ $i }}</td>
+                                                                        <td>{{ $list_Sections->section_name }}</td>
+                                                                        <td>{{ $list_Sections->My_classs->classroom_name }}</td>
+                                                                        <td>
+                                                                            @if ($list_Sections->status === 1)
+                                                                                <label
+                                                                                    class="badge badge-success">@lang('site.Status_Section_yes')</label>
+                                                                            @else
+                                                                                <label
+                                                                                    class="badge badge-danger">@lang('site.Status_Section_No')</label>
+                                                                            @endif
+
+                                                                        </td>
+                                                                        <td>
+
+                                                                            <a href="#"
+                                                                                class="btn btn-outline-info btn-sm"
+                                                                                data-toggle="modal"
+                                                                                data-target="#edit{{ $list_Sections->id }}"><i class="fa fa-edit"></i> @lang('site.edit')</a>
+                                                                                <form method="POST" action="{{ route('sections.destroy', $list_Sections->id) }}" style="display: inline-block"> @csrf @method('DELETE')
+                                                                                    <button type="submit" class="btn btn-danger btn-sm deleteBtn"><i class="fa fa-trash"></i> @lang('site.delete')</button>
+                                                                                </form>
+                                                                        </td>
+                                                                    </tr>
+
+
+                                                                    <!--تعديل قسم جديد -->
+                                                                    <div class="modal fade"
+                                                                        id="edit{{ $list_Sections->id }}"
+                                                                        tabindex="-1" role="dialog"
+                                                                        aria-labelledby="exampleModalLabel"
+                                                                        aria-hidden="true">
+                                                                        <div class="modal-dialog" role="document">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header">
+                                                                                    <h5 class="modal-title"
+                                                                                        style="font-family: 'Cairo', sans-serif;"
+                                                                                        id="exampleModalLabel">
+                                                                                        @lang('site.edit_section')
+                                                                                    </h5>
+                                                                                    <button type="button"
+                                                                                        class="close"
+                                                                                        data-dismiss="modal"
+                                                                                        aria-label="Close">
+                                                                                        <span
+                                                                                            aria-hidden="true">&times;</span>
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div class="modal-body">
+
+                                                                                    <form
+                                                                                        action="{{ route('sections.update', $list_Sections->id) }}"
+                                                                                        method="POST">
+                                                                                        {{ method_field('patch') }}
+                                                                                        {{ csrf_field() }}
+                                                                                        <div class="row">
+                                                                                            @foreach (config('translatable.locales') as $locale)
+                                                                                            <div class="col">
+                                                                                                <input type="text" name="{{ $locale }}_name" class="form-control"
+                                                                                                    placeholder="@lang('site.' . $locale . '.section')"
+                                                                                                    value="{{ $list_Sections->setLocale($locale)->section_name }}">
+                                                                                            </div>
+                                                                                            @endforeach
+
+                                                                                        </div>
+                                                                                        <br>
+
+
+                                                                                        <div class="col">
+                                                                                            <label for="inputName"
+                                                                                                class="control-label">@lang('site.grade_name')</label>
+                                                                                            <select name="Grade_id"
+                                                                                                class="custom-select"
+                                                                                                onclick="console.log($(this).val())">
+                                                                                                <!--placeholder-->
+                                                                                                <option
+                                                                                                    value="{{ $Grade->id }}">
+                                                                                                    {{ $Grade->name }}
+                                                                                                </option>
+                                                                                                @foreach ($list_Grades as $list_Grade)
+                                                                                                    <option
+                                                                                                        value="{{ $list_Grade->id }}">
+                                                                                                        {{ $list_Grade->name }}
+                                                                                                    </option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <br>
+
+                                                                                        <div class="col">
+                                                                                            <label for="inputName"
+                                                                                                class="control-label">@lang('site.classroom_name')</label>
+                                                                                            <select name="Class_id"
+                                                                                                class="custom-select">
+                                                                                                <option
+                                                                                                    value="{{ $list_Sections->My_classs->id }}">
+                                                                                                    {{ $list_Sections->My_classs->classroom_name }}
+                                                                                                </option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <br>
+
+                                                                                        <div class="col">
+                                                                                            <div class="form-check">
+
+                                                                                                @if ($list_Sections->status === 1)
+                                                                                                    <input
+                                                                                                        type="checkbox"
+                                                                                                        checked
+                                                                                                        class="form-check-input"
+                                                                                                        name="status"
+                                                                                                        id="exampleCheck1">
+                                                                                                @else
+                                                                                                    <input
+                                                                                                        type="checkbox"
+                                                                                                        class="form-check-input"
+                                                                                                        name="status"
+                                                                                                        id="exampleCheck1">
+                                                                                                @endif
+                                                                                                <label
+                                                                                                    class="form-check-label"
+                                                                                                    for="exampleCheck1">@lang('site.status')</label>
+                                                                                            </div>
+                                                                                        </div>
+
+
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button"
+                                                                                        class="btn btn-secondary"
+                                                                                        data-dismiss="modal">@lang('site.close')</button>
+                                                                                    <button type="submit"
+                                                                                        class="btn btn-info">@lang('site.edit') </button>
+                                                                                </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                <div class="modal fade" id="add_section" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">@lang('site.new_section')</h5>
-                                <button type="button" class="btn btn-close" data-dismiss="modal"
-                                    aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <form method="post" action="{{ route('sections.store') }}"> @csrf
-                                <div class="modal-body">
-                                    <div class="row">
-                                        @foreach (config('translatable.locales') as $locale)
-                                            <div class="col-md-6">
-                                                <label class="col-md-12">@lang('site.' .
-                                                    $locale . '.section')</label>
-                                                <input type="text"
-                                                    name="{{ $locale }}_name"
-                                                    class="form-control" />
-                                            </div>
-                                        @endforeach
-                                        <div class="col-md-12">
-                                            <label
-                                                class="col-md-12">@lang('site.grade_name')</label>
-                                            <select name="grades" class="form-control custom-select" onchange="$(this).val()">
-                                                <option value="" disabled selected>@lang('site.grades')</option>
-                                                @foreach ($grades as $grade)
-                                                    <option value="{{ $grade->id }}">
-                                                        {{ $grade->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <label
-                                                class="col-md-12">@lang('site.classroom_name')</label>
-                                            <select name="classrooms" class="form-control custom-select">
-                                                <option></option>
-                                            </select>
-                                        </div>
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-sm btn-secondary"
-                                        data-dismiss="modal">@lang('site.close')</button>
-                                    <button type="submit" class="btn btn-sm btn-success">@lang('site.save')</button>
-                                </div>
-                            </form>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
+
+            <!--اضافة قسم جديد -->
+            <div class="modal fade" id="add_section" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" style="font-family: 'Cairo', sans-serif;" id="exampleModalLabel">
+                                @lang('site.new_section')</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+
+                            <form action="{{ route('sections.store') }}" method="POST">
+                                {{ csrf_field() }}
+                                <div class="row">
+                                    @foreach (config('translatable.locales') as $locale)
+                                    <div class="col">
+                                        <input type="text" name="{{ $locale }}_name" class="form-control"
+                                            placeholder="@lang('site.' . $locale . '.section')">
+                                    </div>
+                                    @endforeach
+                                </div>
+                                <br>
+
+
+                                <div class="col">
+                                    <label for="inputName"
+                                        class="control-label">@lang('site.grade_name')</label>
+                                    <select name="Grade_id" class="custom-select"
+                                        onchange="console.log($(this).val())">
+                                        <!--placeholder-->
+                                        <option value="" selected disabled>@lang('site.grades')
+                                        </option>
+                                        @foreach ($list_Grades as $list_Grade)
+                                            <option value="{{ $list_Grade->id }}"> {{ $list_Grade->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <br>
+
+                                <div class="col">
+                                    <label for="inputName"
+                                        class="control-label">@lang('site.classroom_name')</label>
+                                    <select name="Class_id" class="custom-select">
+
+                                    </select>
+                                </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">@lang('site.close')</button>
+                            <button type="submit"
+                                class="btn btn-success">@lang('site.save')</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -151,30 +280,47 @@
 @section('js')
 @toastr_js
 @toastr_render
-
 <script>
     $(document).ready(function() {
-        $('select[name="grades"]').on('change', function () {
-            var grade_id = $(this).val();
-            if(grade_id){
+        $('select[name="Grade_id"]').on('change', function() {
+            var Grade_id = $(this).val();
+            if (Grade_id) {
                 $.ajax({
-                    url: "{{ URL::to('classes') }}/" + grade_id,
+                    url: "{{ URL::to('classes') }}/" + Grade_id,
                     type: "GET",
                     dataType: "json",
                     success: function(data) {
-                        $('select[name="classrooms"]').empty();
-                        $.each(data, function(key, value){
-                            $('select[name="classrooms"]').append('<option value="' + key + '">'+value+'</option>')
-                        })
+                        $('select[name="Class_id"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="Class_id"]').append('<option value="' +
+                                key + '">' + value + '</option>');
+                        });
                     },
-                    error: function() {
-                        console.log('error ya nerm');
-                    }
                 });
-            }else{
-                console.log('erroe');
+            } else {
+                console.log('AJAX load did not work');
             }
-        })
-    })
+        });
+    });
+
+    $('.deleteBtn').click(function (e) {
+            var that = $(this)
+            e.preventDefault();
+            var n = new Noty({
+                text: "@lang('site.confirm_delete')",
+                type: "warning",
+                killer: true,
+                buttons: [
+                    Noty.button("@lang('site.yes')", 'btn btn-danger mr-2', function () {
+                        that.closest('form').submit();
+                    }),
+                    Noty.button("@lang('site.no')", 'btn btn-primary mr-2', function () {
+                        n.close();
+                    })
+                ]
+            });
+            n.show();
+        });//end of delete
 </script>
+
 @endsection
