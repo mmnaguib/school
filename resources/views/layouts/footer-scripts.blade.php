@@ -25,6 +25,8 @@
 <script src="{{ URL::asset('assets/js/validation.js') }}"></script>
 <!-- lobilist -->
 <script src="{{ URL::asset('assets/js/lobilist.js') }}"></script>
+<!-- noty -->
+<script src="{{ asset('assets/js/noty.min.js') }}"></script>
 <!-- custom -->
 <script src="{{ URL::asset('assets/js/custom.js') }}"></script>
 <script>
@@ -42,3 +44,4 @@
         }
     }
 </script>
+@livewireScripts

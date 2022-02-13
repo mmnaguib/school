@@ -30,6 +30,17 @@
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
                         <i style="color:#6c757d !important;font-size:14px" class="ti-home"></i><a style="display: inline" href="{{ route('sections.index') }}">@lang('site.sections')</a>
                     </li>
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#parent">
+                            <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">@lang('site.parents')</span>
+                            </div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="parent" class="collapse" data-parent="#sidebarnav">
+                            <li> <a style="display: inline" href="{{ route('parents.index') }}">@lang('site.add_parent')</a> </li>
+                        </ul>
+                    </li>
 
                 </ul>
             </div>
