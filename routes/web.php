@@ -33,6 +33,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
     Route::resource('sections', SectionsController::class);
     Route::get('classes/{id}', [SectionsController::class,'getClasses']);
 
-    Route::resource('parents', ParentController::class);
-    //Route::view('add_parent', 'livewire.parents');
+    //Route::resource('parents', ParentController::class);
+    Route::view('add_parent', 'livewire.parents');
 });

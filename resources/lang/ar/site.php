@@ -45,5 +45,8 @@ return [
     'address'                           =>'العنوان',
     'next'                              => 'التالي',
     'previous'                          => 'السابق',
-    'add_parent'                        => 'اضافة ولي أمر'
+    'add_parent'                        => 'اضافة ولي أمر',
+    'mohterInformation'                 => 'بيانات الأم',
+    'fatherInformation'                 => 'بيانات الأب',
+    'sureInformation'                   => 'تأكيد المعلومات',
 ];
