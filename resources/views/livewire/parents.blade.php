@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-    @lang('site.add_parent')
+    @lang('site.parents')
 @stop
 @endsection
 @section('page-header')
@@ -10,12 +10,12 @@
 <div class="page-title">
     <div class="row">
         <div class="col-sm-6">
-            <h4 class="mb-0"> @lang('site.add_parent')</h4>
+            <h4 class="mb-0"> @lang('site.parents')</h4>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
                 <li class="breadcrumb-item"><a href="#" class="default-color">@lang('site.dashboard')</a></li>
-                <li class="breadcrumb-item active">@lang('site.add_parent')</li>
+                <li class="breadcrumb-item active">@lang('site.parents')</li>
             </ol>
         </div>
     </div>

@@ -38,7 +38,7 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="parent" class="collapse" data-parent="#sidebarnav">
-                            <li> <a style="display: inline" href="{{ URL('add_parent') }}">@lang('site.add_parent')</a> </li>
+                            <li> <a style="display: inline" href="{{ URL('parents') }}">@lang('site.parents')</a> </li>
                         </ul>
                     </li>
 

@@ -40,7 +40,8 @@ class ShowForm extends Component
     $mama_bloodType,
     $mama_religions,
     $mama_address,
-    $photos;
+    $photos,
+    $show_table = true;
     public function mount()
     {
         $this->currentPage = 1;
@@ -93,7 +94,12 @@ class ShowForm extends Component
             'nationalities' => Nationality::all(),
             'bloodTypes' => BloodType::all(),
             'religions' => Religion::all(),
+            'parents' => ParentModel::all()
         ]);
+    }
+
+    public function showFormadd() {
+        $this->show_table = false;
     }
 
     protected $rules = [

@@ -5,26 +5,29 @@
             {{ $successMsg }}
         </div>
     @endif
-    <div class="stepwizard">
-        <div class="stepwizard-row setup-panel">
-            <div class="stepwizard-step">
-                <a href="#step-1" type="button"
-                class="btn btn-circle {{ $currentPage != 1 ? 'btn-default' : 'btn-success' }}">1</a>
-                <p>@lang('site.fatherInformation')</p>
-            </div>
-            <div class="stepwizard-step">
-                <a href="#step-2" type="button"
-                class="btn btn-circle {{ $currentPage != 2 ? 'btn-default' : 'btn-success' }}">2</a>
-                <p>@lang('site.mohterInformation')</p>
-            </div>
-            <div class="stepwizard-step">
-                <a href="#step-3" type="button"
-                class="btn btn-circle {{ $currentPage != 3 ? 'btn-default' : 'btn-success' }}"
-                disabled="disabled">3</a>
-                <p>@lang('site.sureInformation')</p>
+    @if($show_table)
+        @include('livewire.show-table')
+    @else
+        <div class="stepwizard">
+            <div class="stepwizard-row setup-panel">
+                <div class="stepwizard-step">
+                    <a href="#step-1" type="button"
+                    class="btn btn-circle {{ $currentPage != 1 ? 'btn-default' : 'btn-success' }}">1</a>
+                    <p>@lang('site.fatherInformation')</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a href="#step-2" type="button"
+                    class="btn btn-circle {{ $currentPage != 2 ? 'btn-default' : 'btn-success' }}">2</a>
+                    <p>@lang('site.mohterInformation')</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a href="#step-3" type="button"
+                    class="btn btn-circle {{ $currentPage != 3 ? 'btn-default' : 'btn-success' }}"
+                    disabled="disabled">3</a>
+                    <p>@lang('site.sureInformation')</p>
+                </div>
             </div>
         </div>
-    </div>
         @if($currentPage == 1)
         @include('livewire.father-form')
         @endif
@@ -51,4 +54,6 @@
         @if($currentPage < $totalPages)
         <button class="btn btn-primary" type="button" wire:click='next'>@lang('site.next')</button>
         @endif
+    @endif
+
 </div>
