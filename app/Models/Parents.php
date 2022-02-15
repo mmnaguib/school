@@ -10,6 +10,6 @@ class Parents extends Model
 {
     use HasFactory;
     use HasTranslations;
-    protected $guard = [];
+    protected $guarded = [];
     public $translatable  = ['father_name','father_job','mother_name','mother_job'];
 }
