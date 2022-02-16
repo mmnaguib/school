@@ -44,4 +44,25 @@
         }
     }
 </script>
+<script>
+
+    $('.deleteBtn').click(function (e) {
+        var that = $(this)
+        e.preventDefault();
+        var n = new Noty({
+            text: "@lang('site.confirm_delete')",
+            type: "warning",
+            killer: true,
+            buttons: [
+                Noty.button("@lang('site.yes')", 'btn btn-danger mr-2', function () {
+                    that.closest('form').submit();
+                }),
+                Noty.button("@lang('site.no')", 'btn btn-primary mr-2', function () {
+                    n.close();
+                })
+            ]
+        });
+        n.show();
+    });//end of delete
+</script>
 @livewireScripts

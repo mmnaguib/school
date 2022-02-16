@@ -57,4 +57,6 @@ return [
     'sureInformation'                   => 'تأكيد المعلومات',
     'parentSure'                        => 'هل أنت متأكد من حفظ البيانات ؟',
     'attachments'                       => 'المرفقات',
+    'parent_name'                       => 'اسم ولي الأمر',
+    'parent_job'                        => 'وظيفة ولي الأمر',
 ];
