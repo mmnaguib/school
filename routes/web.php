@@ -4,6 +4,7 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SectionsController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -33,6 +34,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
     Route::resource('sections', SectionsController::class);
     Route::get('classes/{id}', [SectionsController::class,'getClasses']);
 
-    //Route::resource('parents', ParentController::class);
+    Route::resource('teachers', TeacherController::class);
     Route::view('parents', 'livewire.parents');
 });

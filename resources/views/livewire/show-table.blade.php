@@ -29,7 +29,7 @@
             <td>{{ $parent->father_phone }}</td>
             <td>{{ $parent->father_job }}</td>
             <td>
-                <a class="btn btn-sm btn-primary" wire:click='edit({{ $parent->id }})'><i class="fa fa-edit"></i></a>
+                <button class="btn btn-sm btn-primary" wire:click='edit({{ $parent->id }})'><i class="fa fa-edit"></i> @lang('site.edit')</button>
                 <button type="submit" class="btn btn-danger btn-sm" wire:click="delete({{ $parent->id }} )" ><i class="fa fa-trash"></i> @lang('site.delete')</button>
             </td>
         </tr>

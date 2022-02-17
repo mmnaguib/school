@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\class_room;
 use App\Models\Grade;
 use App\Models\Section;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class SectionsController extends Controller
@@ -14,8 +15,8 @@ class SectionsController extends Controller
         $Grades = Grade::with(['Sections'])->get();
 
         $list_Grades = Grade::all();
-
-        return view('pages.Sections.Sections',compact('Grades','list_Grades'));
+        $teachers = Teacher::all();
+        return view('pages.Sections.Sections',compact('Grades','list_Grades','teachers'));
     }
 
     /**
@@ -39,7 +40,8 @@ class SectionsController extends Controller
         $request->validate([
             'ar_name'   => 'required',
             'en_name'   => 'required',
-            'Grade_id'  => 'required'
+            'Grade_id'  => 'required',
+            'teacher_id'  => 'required',
         ]);
         $section = new Section();
         $section->section_name = ['ar' => $request->ar_name, 'en' => $request->en_name];
@@ -47,6 +49,7 @@ class SectionsController extends Controller
         $section->class_id = $request->Class_id;
         $section->status   = 1;
         $section->save();
+        $section->teachers()->attach($request->teacher_id);
         toastr()->success(__('site.added_successfully'));
         return redirect()->route('sections.index');
     }

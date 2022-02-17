@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateParentsAttatchmentsTable extends Migration
+class CreateSpecializationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateParentsAttatchmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('parents_attatchments', function (Blueprint $table) {
+        Schema::create('specializations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('file_name');
-            $table->integer('parent_id')->unsigned();
-            $table->foreign('parent_id')->references('id')->on('parents');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateParentsAttatchmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('parents_attatchments');
+        Schema::dropIfExists('specializations');
     }
 }

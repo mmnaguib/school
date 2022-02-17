@@ -33,6 +33,9 @@
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
                         <i style="color:#6c757d !important;font-size:14px" class="ti-user"></i><a style="display: inline" href="{{ URL('parents') }}">@lang('site.parents')</a>
                     </li>
+                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
+                        <i style="color:#6c757d !important;font-size:14px" class="ti-user"></i><a style="display: inline" href="{{ route('teachers.index') }}">@lang('site.teachers')</a>
+                    </li>
 
                 </ul>
             </div>

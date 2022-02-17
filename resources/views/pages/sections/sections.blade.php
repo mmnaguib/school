@@ -259,6 +259,15 @@
                                     </select>
                                 </div>
 
+                                <div class="col">
+                                    <label for="inputName"
+                                        class="control-label">@lang('site.teachers')</label>
+                                        <select name="teacher_id[]" class="custom-select" multiple>
+                                            @foreach ($teachers as $teacher)
+                                                <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                            @endforeach
+                                        </select>
+                                </div>
 
                         </div>
                         <div class="modal-footer">
