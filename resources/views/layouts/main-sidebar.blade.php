@@ -31,6 +31,9 @@
                         <i style="color:#6c757d !important;font-size:14px" class="ti-home"></i><a style="display: inline" href="{{ route('sections.index') }}">@lang('site.sections')</a>
                     </li>
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
+                        <i style="color:#6c757d !important;font-size:14px" class="ti-user"></i><a style="display: inline" href="{{ route('students.index') }}">@lang('site.students')</a>
+                    </li>
+                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
                         <i style="color:#6c757d !important;font-size:14px" class="ti-user"></i><a style="display: inline" href="{{ URL('parents') }}">@lang('site.parents')</a>
                     </li>
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
