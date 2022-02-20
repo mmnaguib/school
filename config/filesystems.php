@@ -37,7 +37,13 @@ return [
 
         'parent_attachements' => [
             'driver' => 'local',
-            'root' => public_path('images/parent_attachements/'),
+            'root' => public_path('images/parent/'),
+        ],
+
+
+        'student_attachements' => [
+            'driver' => 'local',
+            'root' => public_path('images/students/'),
         ],
 
 

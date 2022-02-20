@@ -100,6 +100,11 @@ class SectionsController extends Controller
         } else {
             $section->status = 2;
         }
+        if(isset($request->teacher_id)) {
+            $section->teachers()->sync($request->teacher_id);
+        } else {
+            $section->teachers()->sync(array());
+        }
         $section->save();
         toastr()->success(__('site.updated_successfully'));
         return redirect()->route('sections.index');

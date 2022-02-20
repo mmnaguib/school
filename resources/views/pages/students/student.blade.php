@@ -31,8 +31,36 @@
                 <a href="{{ route('students.create') }}" class="btn btn-primary btn-sm">@lang('site.add_student')</a>
                 <table id="datatable" class="table table-striped table-bordered p-0">
                     <thead>
+                        <tr>
+                            <td>@lang('site.student_name')</td>
+                            <td>@lang('site.email')</td>
+                            <td>@lang('site.grades')</td>
+                            <td>@lang('site.classroom_name')</td>
+                            <td>@lang('site.section_name')</td>
+                            <td>@lang('site.date_birthday')</td>
+                            <td>@lang('site.gender')</td>
+                            <td>@lang('site.actions')</td>
+                        </tr>
                     </thead>
                     <tbody>
+                        @foreach ($students as $student)
+                            <tr>
+                                <th>{{ $student->name }} {{ $student->parents->father_name }}</th>
+                                <th>{{ $student->email }}</th>
+                                <th>{{ $student->grades->name }}</th>
+                                <th>{{ $student->classrooms->classroom_name }}</th>
+                                <th>{{ $student->sections->section_name }}</th>
+                                <th>{{ $student->birthdate }}</th>
+                                <th>{{ $student->genders->name }}</th>
+                                <th>
+                                    <a class="btn btn-info btn-sm" href="{{ route('students.show', $student->id) }}"><i class="fa fa-eye"></i> @lang('site.show')</a>
+                                    <a class="btn btn-info btn-sm" href="{{ route('students.edit', $student->id) }}"><i class="fa fa-edit"></i> @lang('site.edit')</a>
+                                    <form method="POST" action="{{ route('students.destroy', $student->id) }}" style="display: inline-block"> @csrf @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm deleteBtn"><i class="fa fa-trash"></i> @lang('site.delete')</button>
+                                    </form>
+                                </th>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -37,5 +37,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
 
     Route::resource('teachers', TeacherController::class);
     Route::resource('students', StudentController::class);
+    Route::get('getSections/{id}', [StudentController::class,'getSections']);
     Route::view('parents', 'livewire.parents');
 });

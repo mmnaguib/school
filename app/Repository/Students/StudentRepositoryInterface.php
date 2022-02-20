@@ -8,7 +8,14 @@ interface StudentRepositoryInterface {
     public function getAllStudents();
 
     public function createStudent();
-    
+
     public function storeStudents($request);
 
+    public function showStudent($id);
+
+    public function editStudent($id);
+
+    public function updateStudent($request, $id);
+
+    public function deleteStudent($id);
 }

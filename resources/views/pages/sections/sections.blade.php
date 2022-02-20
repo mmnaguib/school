@@ -156,6 +156,17 @@
                                                                                                 </option>
                                                                                             </select>
                                                                                         </div>
+                                                                                        <div class="col">
+                                                                                            <label for="inputName" class="control-label">@lang('site.teachers')</label>
+                                                                                            <select name="teacher_id[]" class="custom-select" multiple>
+                                                                                                @foreach ($list_Sections->teachers as $teacher)
+                                                                                                    <option selected value="{{ $teacher['id'] }}">{{ $teacher['name'] }}</option>
+                                                                                                @endforeach
+                                                                                                @foreach ($teachers as $teacher)
+                                                                                                    <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                                                                                @endforeach
+                                                                                            </select>
+                                                                                        </div>
                                                                                         <br>
 
                                                                                         <div class="col">
@@ -260,13 +271,12 @@
                                 </div>
 
                                 <div class="col">
-                                    <label for="inputName"
-                                        class="control-label">@lang('site.teachers')</label>
-                                        <select name="teacher_id[]" class="custom-select" multiple>
-                                            @foreach ($teachers as $teacher)
-                                                <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
-                                            @endforeach
-                                        </select>
+                                    <label for="inputName" class="control-label">@lang('site.teachers')</label>
+                                    <select name="teacher_id[]" class="custom-select" multiple>
+                                        @foreach ($teachers as $teacher)
+                                            <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                         </div>
@@ -311,25 +321,6 @@
             }
         });
     });
-
-    $('.deleteBtn').click(function (e) {
-            var that = $(this)
-            e.preventDefault();
-            var n = new Noty({
-                text: "@lang('site.confirm_delete')",
-                type: "warning",
-                killer: true,
-                buttons: [
-                    Noty.button("@lang('site.yes')", 'btn btn-danger mr-2', function () {
-                        that.closest('form').submit();
-                    }),
-                    Noty.button("@lang('site.no')", 'btn btn-primary mr-2', function () {
-                        n.close();
-                    })
-                ]
-            });
-            n.show();
-        });//end of delete
 </script>
 
 @endsection
