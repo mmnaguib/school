@@ -30,8 +30,18 @@
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
                         <i style="color:#6c757d !important;font-size:14px" class="ti-home"></i><a style="display: inline" href="{{ route('sections.index') }}">@lang('site.sections')</a>
                     </li>
-                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
-                        <i style="color:#6c757d !important;font-size:14px" class="ti-user"></i><a style="display: inline" href="{{ route('students.index') }}">@lang('site.students')</a>
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students">
+                            <div class="pull-left"><i class="ti-user"></i><span class="right-nav-text">@lang('site.students')</span>
+                            </div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="students" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('students.index') }}">@lang('site.students')</a> </li>
+                            <li> <a href="{{ route('promotions.index') }}">@lang('site.promotions_management')</a></li>
+                            <li> <a href="{{ route('graduated.index') }}">@lang('site.graduated_students')</a></li>
+                        </ul>
                     </li>
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
                         <i style="color:#6c757d !important;font-size:14px" class="ti-user"></i><a style="display: inline" href="{{ URL('parents') }}">@lang('site.parents')</a>

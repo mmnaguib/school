@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Students;
+
+use App\Http\Controllers\Controller;
 
 use App\Models\Section;
 use Illuminate\Http\Request;
 use App\Repository\Students\StudentRepositoryInterface;
-use PhpParser\Builder\Function_;
-use PhpParser\Node\Expr\FuncCall;
 
 class StudentController extends Controller
 {
@@ -56,5 +56,15 @@ class StudentController extends Controller
     }
     public function destroyImage($id) {
         return $id;
+    }
+    public function uploadAttachment(Request $request) {
+        return $this->student->uploadAttachment($request);
+    }
+
+    public function download_attachment($student_name, $file_name){
+        return $this->student->download_attachment($student_name, $file_name);
+    }
+    public function delete_attachment(Request $request, $id){
+        return $this->student->delete_attachment($request, $id);
     }
 }

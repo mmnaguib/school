@@ -65,4 +65,97 @@
         n.show();
     });//end of delete
 </script>
+<script>
+    $(document).ready(function() {
+        $('select[name="grades"]').on('change', function() {
+            var Grade_id = $(this).val();
+            if (Grade_id) {
+                $.ajax({
+                    url: "{{ URL::to('classes') }}/" + Grade_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('select[name="classrooms"]').empty();
+                        $('select[name="classrooms"]').append('<option selected disabled>@lang('site.classroom')</option>');
+                        $.each(data, function(key, value) {
+                            $('select[name="classrooms"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('select[name="classrooms"]').on('change', function () {
+            var classroom_id = $(this).val();
+            if (classroom_id) {
+                $.ajax({
+                    url: "{{ URL::to('getSections') }}/" + classroom_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="sections"]').empty();
+                        $.each(data, function (key, value) {
+                            $('select[name="sections"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            }
+            else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('select[name="grades_new"]').on('change', function() {
+            var Grade_id = $(this).val();
+            if (Grade_id) {
+                $.ajax({
+                    url: "{{ URL::to('classes') }}/" + Grade_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function(data) {
+                        $('select[name="classrooms_new"]').empty();
+                        $('select[name="classrooms_new"]').append('<option selected disabled>@lang('site.classroom')</option>');
+                        $.each(data, function(key, value) {
+                            $('select[name="classrooms_new"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            } else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('select[name="classrooms_new"]').on('change', function () {
+            var classroom_id = $(this).val();
+            if (classroom_id) {
+                $.ajax({
+                    url: "{{ URL::to('getSections') }}/" + classroom_id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        $('select[name="sections_new"]').empty();
+                        $.each(data, function (key, value) {
+                            $('select[name="sections_new"]').append('<option value="' + key + '">' + value + '</option>');
+                        });
+                    },
+                });
+            }
+            else {
+                console.log('AJAX load did not work');
+            }
+        });
+    });
+</script>
 @livewireScripts

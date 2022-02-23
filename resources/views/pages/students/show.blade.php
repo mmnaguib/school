@@ -77,22 +77,24 @@
                                     aria-labelledby="profile-02-tab">
                                     <div class="card card-statistics">
                                         <div class="card-body">
-                                            <form method="post" action="" enctype="multipart/form-data">
-                                                {{ csrf_field() }}
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <label
-                                                            for="academic_year">@lang('site.attachments')
-                                                            : <span class="text-danger">*</span></label>
-                                                        <input type="file" accept="image/*" name="photos[]" multiple required>
-                                                        <input type="hidden" name="student_name" value="{{$student->name}}">
-                                                        <input type="hidden" name="student_id" value="{{$student->id}}">
+                                            <form method="post" action="{{ route('uploadAttachment') }}" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="row">
+                                                    <div class="col-md-2">
+                                                        <div class="form-group">
+                                                            <label>@lang('site.attachments'): <span class="text-danger">*</span></label>
+                                                            <input type="file" accept="image/*" name="photos[]" multiple required>
+                                                            <input type="hidden" name="student_name" value="{{$student->name}}">
+                                                            <input type="hidden" name="student_id" value="{{$student->id}}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <label style="visibility: hidden;display: block">.</label>
+                                                        <button type="submit" class="btn btn-sm btn-outline-success" style="width: 120px">
+                                                            @lang('site.save')
+                                                        </button>
                                                     </div>
                                                 </div>
-                                                <br><br>
-                                                <button type="submit" class="button button-border x-small">
-                                                    @lang('site.save')
-                                                </button>
                                             </form>
                                         </div>
                                         <br>
@@ -114,15 +116,38 @@
                                                     <td>{{$attachment->created_at->diffForHumans()}}</td>
                                                     <td colspan="2">
                                                         <a class="btn btn-outline-info btn-sm"
-                                                        href="{{url('Download_attachment')}}/{{ $attachment->imageable->name }}/{{$attachment->filename}}"
+                                                        href="{{url('download_attachment')}}/{{ $attachment->imageable->setLocale('ar')->name }}/{{$attachment->file_name}}"
                                                         role="button"><i class="fa fa-download"></i>&nbsp; @lang('site.download')</a>
 
-                                                        <button type="button" class="btn btn-outline-danger btn-sm"
-                                                                data-toggle="modal"
-                                                                data-target="#Delete_img{{ $attachment->id }}"
-                                                                title="{{ trans('Grades_trans.Delete') }}">@lang('site.delete')
+                                                        <button type="button" class="btn btn-sm  btn-outline-primary" data-toggle="modal" data-target="#show_{{ $attachment->id }}">
+                                                        @lang('site.show_image')
                                                         </button>
 
+
+                                                        <form method="POST" action="{{ route('delete_attachment', $attachment->id)}}" style="display: inline-block"> @csrf
+                                                            <button type="submit" class="btn btn-outline-danger btn-sm deleteBtn"><i class="fa fa-trash"></i> @lang('site.delete')</button>
+                                                            <input type="hidden" value="{{ $attachment->imageable->name }}" name="student_name" />
+                                                            <input type="hidden" value="{{ $attachment->imageable->id }}"   name="student_id" />
+                                                            <input type="hidden" value="{{ $attachment->file_name }}"   name="file_name" />
+                                                        </form>
+<!-- Modal -->
+                                                        <div class="modal fade" id="show_{{ $attachment->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel"> @lang('site.images') {{ $attachment->imageable->name }}</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <img src="{{ URL::asset('images/students/'. $attachment->imageable->setLocale('ar')->name .'/' . $attachment->file_name) }}" class="img-thumbnail" width="80%"/>
+                                                                    <img src="{{ URL::asset('images/students/'. $attachment->imageable->setLocale('en')->name .'/' . $attachment->file_name) }}" class="img-thumbnail" width="80%"/>
+
+                                                                </div>
+                                                            </div>
+                                                            </div>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach

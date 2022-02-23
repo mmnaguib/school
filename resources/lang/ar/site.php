@@ -90,5 +90,16 @@ return [
     'student_details'                   => 'معلومات الطالب',
     'download'                          => 'تحميل',
     'created_at'                        => 'أَنشي منذ',
-    'filename'                        => 'أسم المرفق',
+    'filename'                          => 'أسم المرفق',
+    'images'                            => 'صور',
+    'show_image'                        => 'عرض الصورة',
+    'promotions'                        => 'ترقية الطلاب',
+    'nextGrades'                        => 'المراحل الدراسية القادمة',
+    'lastGrades'                        => 'المراحل الدراسية السابقة',
+    'no_students_data'                  => 'لا يوجد طلاب في هذا الصف !!',
+    'promotions_management'             => 'إدارة ترقية الطلاب',
+    'back_all'                          => 'تراجع الكل',
+    'student_back'                      => 'إرجاع الطالب',
+    'graduated_students'                => 'الخريجين',
+    'add_graduated_students'            => 'تخرج'
 ];

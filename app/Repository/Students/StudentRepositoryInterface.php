@@ -18,4 +18,10 @@ interface StudentRepositoryInterface {
     public function updateStudent($request, $id);
 
     public function deleteStudent($id);
+
+    public function uploadAttachment($request);
+
+    public function download_attachment($student_name, $file_name);
+
+    public function delete_attachment($request, $id);
 }

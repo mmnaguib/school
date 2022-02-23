@@ -104,7 +104,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('site.grades')</label>
-                                    <select name="grade" class="form-control">
+                                    <select name="grades" class="form-control">
                                         <option selected value="">@lang('site.grades')</option>
                                         @foreach ($grades as $grade)
                                             <option value="{{ $grade->id }}">{{ $grade->name }}</option>
@@ -115,7 +115,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('site.classroom')</label>
-                                    <select name="classroom" class="form-control">
+                                    <select name="classrooms" class="form-control">
                                         <option value="">@lang('site.choose_grade')</option>
                                     </select>
                                 </div>
@@ -123,7 +123,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>@lang('site.sections')</label>
-                                    <select name="section" class="form-control">
+                                    <select name="sections" class="form-control">
                                         <option value="">@lang('site.choose_classroom')</option>
                                     </select>
                                 </div>
@@ -179,50 +179,5 @@
 <!-- row closed -->
 @endsection
 @section('js')
-<script>
-    $(document).ready(function() {
-        $('select[name="grade"]').on('change', function() {
-            var Grade_id = $(this).val();
-            if (Grade_id) {
-                $.ajax({
-                    url: "{{ URL::to('classes') }}/" + Grade_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        $('select[name="classroom"]').empty();
-                        $('select[name="classroom"]').append('<option selected disabled>@lang('site.classroom')</option>');
-                        $.each(data, function(key, value) {
-                            $('select[name="classroom"]').append('<option value="' + key + '">' + value + '</option>');
-                        });
-                    },
-                });
-            } else {
-                console.log('AJAX load did not work');
-            }
-        });
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        $('select[name="classroom"]').on('change', function () {
-            var classroom_id = $(this).val();
-            if (classroom_id) {
-                $.ajax({
-                    url: "{{ URL::to('getSections') }}/" + classroom_id,
-                    type: "GET",
-                    dataType: "json",
-                    success: function (data) {
-                        $('select[name="section"]').empty();
-                        $.each(data, function (key, value) {
-                            $('select[name="section"]').append('<option value="' + key + '">' + value + '</option>');
-                        });
-                    },
-                });
-            }
-            else {
-                console.log('AJAX load did not work');
-            }
-        });
-    });
-</script>
+
 @endsection

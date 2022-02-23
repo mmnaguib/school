@@ -34,6 +34,7 @@ class CreateStudentsTable extends Migration
             $table->foreign('section_id')->references('id')->on('sections');
             $table->foreign('parent_id')->references('id')->on('parents');
             $table->foreign('classroom_id')->references('id')->on('class_rooms');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
