@@ -3,7 +3,6 @@ namespace App\Repository\Graduated;
 
 use App\Models\Grade;
 use App\Models\Student;
-use phpDocumentor\Reflection\Types\Null_;
 
 class GraduatedRepository implements GraduatedRepositoryInterface{
     public function Index(){
