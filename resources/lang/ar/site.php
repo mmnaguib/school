@@ -108,4 +108,12 @@ return [
     'add_fees'                          => 'إضافة رسوم دراسية',
     'accountants'                       => 'الحسابات',
     'fee_name'                          => 'اسم الحساب',
+    'add_fee'                           => 'إضافة رسوم',
+    'fees_type'                         => 'نوع الرسوم',
+    'bus_Fee'                           => 'رسوم باص',
+    'studing_Fee'                       => 'رسوم دراسية',
+    'fee_invoice'                       => 'الفواتير الدراسية',
+    'add_fee_invoice'                   => 'إضافة فاتورة',
+    'description'                       => 'البيان',
+    'edit_fee_invoice'                  => 'تعديل فاتورة دراسية'
 ];

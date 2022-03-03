@@ -20,6 +20,7 @@ class CreateFeesTable extends Migration
             $table->integer('grade_id')->unsigned();
             $table->integer('classroom_id')->unsigned();
             $table->string('academic_year');
+            $table->integer('fee_type');
             $table->text('notes');
             $table->foreign('grade_id')->references('id')->on('grades')->onDelete('cascade');
             $table->foreign('classroom_id')->references('id')->on('class_rooms')->onDelete('cascade');

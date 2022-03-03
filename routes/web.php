@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\ClassroomController;
-use App\Http\Controllers\FeeContorller;
+use App\Http\Controllers\Students\FeeContorller;
+use App\Http\Controllers\Students\feeInvoicesController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\Students\PromotionController;
 use App\Http\Controllers\SectionsController;
@@ -42,7 +43,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
     Route::view('parents', 'livewire.parents');
     // Teachers
     Route::resource('teachers', TeacherController::class);
-    // Students && Promotions && Graduated
+    // Students && Promotions && Graduated && Fees && Fees Invoices
     Route::resource('students', StudentController::class);
     Route::resource('promotions', PromotionController::class);
     Route::resource('graduated', GraduatedController::class);
@@ -50,8 +51,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
     Route::post('uploadAttachment', [StudentController::class,'uploadAttachment'])->name('uploadAttachment');
     Route::get('download_attachment/{student_name}/{file_name}', [StudentController::class,'download_attachment'])->name('download_attachment');
     Route::post('delete_attachment/{id}', [StudentController::class,'delete_attachment'])->name('delete_attachment');
-
-    // Fees
     Route::resource('fees', FeeContorller::class);
-
+    Route::resource('feesInvoices', feeInvoicesController::class);
 });

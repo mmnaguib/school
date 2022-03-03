@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>@lang('site.grades')</label>
                             <select name="grades" class="form-control">
@@ -59,7 +59,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>@lang('site.classroom')</label>
                             <select name="classrooms" class="form-control">
@@ -67,7 +67,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <label>@lang('site.academic_year')</label>
                             <select name="academic_year" class="form-control">
@@ -78,6 +78,16 @@
                                 @for($year=$current_year; $year<=$current_year +1 ;$year++)
                                     <option value="{{ $year}}">{{ $year }}</option>
                                 @endfor
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>@lang('site.fees_type')</label>
+                            <select name="fees_type" class="form-control">
+                                <option value="1">@lang('site.studing_Fee')</option>
+                                <option value="2">@lang('site.bus_Fee')</option>
                             </select>
                         </div>
                     </div>

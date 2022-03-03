@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Students;
+
+use App\Http\Controllers\Controller;
 
 use App\Repository\Fee\feeRepositoryInterface;
 use Illuminate\Http\Request;

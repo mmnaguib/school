@@ -23,8 +23,9 @@ class feeRepository implements feeRepositoryInterface{
             'en_fees'       => "required",
             'fee_amount'    => "required|numeric",
             'grades'        => "required",
-            'classrooms'    => "required|unique:fees,classroom_id,",
+            'classrooms'    => "required",
             'academic_year' => "required",
+            'fees_type'     => "required",
             'notes'         => "required"
         ]);
 
@@ -34,6 +35,7 @@ class feeRepository implements feeRepositoryInterface{
         $fee->grade_id = $request->grades;
         $fee->classroom_id = $request->classrooms;
         $fee->academic_year = $request->academic_year;
+        $fee->fee_type = $request->fees_type;
         $fee->notes = $request->notes;
         $fee->save();
         toastr()->success(__('site.added_successfully'));
@@ -53,8 +55,9 @@ class feeRepository implements feeRepositoryInterface{
             'en_fees'       => "required",
             'fee_amount'    => "required|numeric",
             'grades'        => "required",
-            'classrooms'    => "required|unique:fees,classroom_id," . $id,
+            'classrooms'    => "required",
             'academic_year' => "required",
+            'fees_type'     => "required",
             'notes'         => "required"
         ]);
 
@@ -64,6 +67,7 @@ class feeRepository implements feeRepositoryInterface{
         $fee->grade_id = $request->grades;
         $fee->classroom_id = $request->classrooms;
         $fee->academic_year = $request->academic_year;
+        $fee->fee_type = $request->fees_type;
         $fee->notes = $request->notes;
         $fee->save();
         toastr()->success(__('site.updated_successfully'));

@@ -4,18 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\Translatable\HasTranslations;
-class Fee extends Model
+
+class fee_invoice extends Model
 {
     use HasFactory;
-    use HasTranslations;
-    protected $fillable = ['name','grade_id','classroom_id','amount','academic_year','fee_type'];
-    public $translatable = ['name'];
 
     public function grades() {
         return $this->belongsTo(Grade::class, 'grade_id');
     }
     public function classrooms() {
         return $this->belongsTo(class_room::class, 'classroom_id');
+    }
+    public function sections() {
+        return $this->belongsTo(Section::class, 'section_id');
+    }
+    public function students() {
+        return $this->belongsTo(Student::class, 'student_id');
+    }
+    public function fees() {
+        return $this->belongsTo(Fee::class, 'fee_id');
     }
 }
