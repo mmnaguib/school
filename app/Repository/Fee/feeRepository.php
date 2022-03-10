@@ -57,7 +57,6 @@ class feeRepository implements feeRepositoryInterface{
             'grades'        => "required",
             'classrooms'    => "required",
             'academic_year' => "required",
-            'fees_type'     => "required",
             'notes'         => "required"
         ]);
 
@@ -67,7 +66,6 @@ class feeRepository implements feeRepositoryInterface{
         $fee->grade_id = $request->grades;
         $fee->classroom_id = $request->classrooms;
         $fee->academic_year = $request->academic_year;
-        $fee->fee_type = $request->fees_type;
         $fee->notes = $request->notes;
         $fee->save();
         toastr()->success(__('site.updated_successfully'));

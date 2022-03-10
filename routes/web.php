@@ -7,6 +7,7 @@ use App\Http\Controllers\GradeController;
 use App\Http\Controllers\Students\PromotionController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\Students\GraduatedController;
+use App\Http\Controllers\Students\ReceiptStudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\Students\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -53,4 +54,5 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
     Route::post('delete_attachment/{id}', [StudentController::class,'delete_attachment'])->name('delete_attachment');
     Route::resource('fees', FeeContorller::class);
     Route::resource('feesInvoices', feeInvoicesController::class);
+    Route::resource('receipts', ReceiptStudentController::class);
 });

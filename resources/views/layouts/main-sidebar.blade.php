@@ -60,6 +60,7 @@
                         <ul id="accountants" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ route('fees.index') }}">@lang('site.accountants')</a> </li>
                             <li> <a href="{{ route('feesInvoices.index') }}">@lang('site.fee_invoice')</a></li>
+                            <li> <a href="{{ route('receipts.index') }}">@lang('site.receipts')</a></li>
                         </ul>
                     </li>
 

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class fee_invoice extends Model
 {
     use HasFactory;
-
+    protected $guarded = [];
     public function grades() {
         return $this->belongsTo(Grade::class, 'grade_id');
     }

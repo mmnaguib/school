@@ -10,6 +10,8 @@ use App\Repository\Graduated\GraduatedRepository;
 use App\Repository\Graduated\GraduatedRepositoryInterface;
 use App\Repository\Promotions\PromotionRepository;
 use App\Repository\Promotions\PromotionRepositoryInterface;
+use App\Repository\ReceiptStudent\ReceiptStudentRepository;
+use App\Repository\ReceiptStudent\ReceiptStudentRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use App\Repository\TeacherRepositoryInterface;
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(GraduatedRepositoryInterface::class,GraduatedRepository::class);
         $this->app->bind(feeRepositoryInterface::class,feeRepository::class);
         $this->app->bind(FeeInvoicesRepositoryInterface::class,FeeInvoicesRepository::class);
+        $this->app->bind(ReceiptStudentRepositoryInterface::class,ReceiptStudentRepository::class);
     }
     public function boot()
     {

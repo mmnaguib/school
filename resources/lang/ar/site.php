@@ -115,5 +115,7 @@ return [
     'fee_invoice'                       => 'الفواتير الدراسية',
     'add_fee_invoice'                   => 'إضافة فاتورة',
     'description'                       => 'البيان',
-    'edit_fee_invoice'                  => 'تعديل فاتورة دراسية'
+    'edit_fee_invoice'                  => 'تعديل فاتورة دراسية',
+    'receipts'                          => 'سندات القبض',
+    'receipt'                           => 'سند قبض'
 ];
