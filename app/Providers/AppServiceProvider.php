@@ -8,6 +8,8 @@ use App\Repository\FeeInvoices\FeeInvoicesRepository;
 use App\Repository\FeeInvoices\FeeInvoicesRepositoryInterface;
 use App\Repository\Graduated\GraduatedRepository;
 use App\Repository\Graduated\GraduatedRepositoryInterface;
+use App\Repository\Payment\PaymentRepository;
+use App\Repository\Payment\PaymentRepositoryInterface;
 use App\Repository\Promotions\PromotionRepository;
 use App\Repository\Promotions\PromotionRepositoryInterface;
 use App\Repository\ReceiptStudent\ReceiptStudentRepository;
@@ -29,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(feeRepositoryInterface::class,feeRepository::class);
         $this->app->bind(FeeInvoicesRepositoryInterface::class,FeeInvoicesRepository::class);
         $this->app->bind(ReceiptStudentRepositoryInterface::class,ReceiptStudentRepository::class);
+        $this->app->bind(PaymentRepositoryInterface::class,PaymentRepository::class);
     }
     public function boot()
     {
