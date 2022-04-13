@@ -2,7 +2,7 @@
 @section('css')
 @toastr_css
 @section('title')
-    @lang('site.receipts')
+    @lang('site.payments')
 @stop
 @endsection
 @section('page-header')
@@ -10,13 +10,13 @@
 <div class="page-title">
     <div class="row">
         <div class="col-sm-6">
-            <h4 class="mb-0"> @lang('site.receipts')</h4>
+            <h4 class="mb-0"> @lang('site.payments')</h4>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
                 <li class="breadcrumb-item"><a href="#" class="default-color">@lang('site.dashboard')</a></li>
                 <li class="breadcrumb-item"><a href="#" class="default-color">@lang('site.students')</a></li>
-                <li class="breadcrumb-item active">@lang('site.receipts')</li>
+                <li class="breadcrumb-item active">@lang('site.payments')</li>
             </ol>
         </div>
     </div>
@@ -35,18 +35,18 @@
                             <td>@lang('site.student_name')</td>
                             <td>@lang('site.amount')</td>
                             <td>@lang('site.description')</td>
-                            <td>@lang('site.grades')</td>
+                            <td>@lang('site.actions')</td>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($receipes as $receipe)
+                        @foreach ($payments as $payment)
                         <tr>
-                            <td>{{ $receipe->student->name }}</td>
-                            <td>{{ $receipe->debit }}</td>
-                            <td>{{ $receipe->description }}</td>
+                            <td>{{ $payment->student->name}}</td>
+                            <td>{{ $payment->amount }}</td>
+                            <td>{{ $payment->description }}</td>
                             <th>
-                                <a class="btn btn-info btn-sm" href="{{ route('receipts.edit', $receipe->id) }}"><i class="fa fa-edit"></i> @lang('site.edit')</a>
-                                <form method="POST" action="{{ route('receipts.destroy', $receipe->id) }}" style="display: inline-block"> @csrf @method('DELETE')
+                                <a class="btn btn-info btn-sm" href="{{ route('payment_students.edit', $payment->id) }}"><i class="fa fa-edit"></i> @lang('site.edit')</a>
+                                <form method="POST" action="{{ route('payment_students.destroy', $payment->id) }}" style="display: inline-block"> @csrf @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm deleteBtn"><i class="fa fa-trash"></i> @lang('site.delete') </button>
                                 </form>
                             </th>

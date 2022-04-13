@@ -53,13 +53,23 @@
                                 <th>{{ $student->birthdate }}</th>
                                 <th>{{ $student->genders->name }}</th>
                                 <th>
-                                    <a class="btn btn-info btn-sm" href="{{ route('students.show', $student->id) }}"><i class="fa fa-eye"></i> @lang('site.show')</a>
-                                    <a class="btn btn-primary btn-sm" href="{{ route('students.edit', $student->id) }}"><i class="fa fa-edit"></i> @lang('site.edit')</a>
-                                    <a class="btn btn-info btn-sm" href="{{ route('feesInvoices.show', $student->id) }}"><i class="fa fa-edit"></i> @lang('site.fee_invoice')</a>
-                                    <a class="btn btn-primary btn-sm" href="{{ route('receipts.show', $student->id) }}"><i class="fa fa-file-text"></i> @lang('site.receipts')</a>
-                                    <form method="POST" action="{{ route('students.destroy', $student->id) }}" style="display: inline-block"> @csrf @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm deleteBtn"><i class="fa fa-trash"></i> @lang('site.delete')</button>
-                                    </form>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @lang('site.actions')
+                                        </button>
+                                        <div class="dropdown-menu" style="padding: 10px">
+                                            <a class="btn btn-block btn-info btn-sm" href="{{ route('students.show', $student->id) }}"><i class="fa fa-eye"></i> @lang('site.show')</a>
+                                            <a class="btn btn-block btn-primary btn-sm" href="{{ route('students.edit', $student->id) }}"><i class="fa fa-edit"></i> @lang('site.edit')</a>
+                                            <a class="btn btn-block btn-info btn-sm" href="{{ route('feesInvoices.show', $student->id) }}"><i class="fa fa-edit"></i> @lang('site.fee_invoice')</a>
+                                            <a class="btn btn-block btn-primary btn-sm" href="{{ route('receipts.show', $student->id) }}"><i class="fa fa-file-text"></i> @lang('site.receipt')</a>
+                                            <a class="btn btn-block btn-danger btn-sm" href="{{ route('processesFee.show', $student->id) }}"><i class="fa fa-file-text"></i> @lang('site.processFee')</a>
+                                            <a class="btn btn-block btn-primary btn-sm" href="{{ route('payment_students.show', $student->id) }}"><i class="fa fa-file-text"></i> @lang('site.payment')</a>
+                                            <form method="POST" action="{{ route('students.destroy', $student->id) }}" style="display: block;margin-top: 0.5rem"> @csrf @method('DELETE')
+                                                <button type="submit" class="btn btn-block btn-danger btn-sm deleteBtn"><i class="fa fa-trash"></i> @lang('site.delete')</button>
+                                            </form>
+
+                                        </div>
+                                    </div>
                                 </th>
                             </tr>
                         @endforeach

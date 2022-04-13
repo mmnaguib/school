@@ -54,6 +54,7 @@ return [
     'parents'                           => 'اولياء الامور',
     'email'                             =>'البريد الالكتروني',
     'password'                          => 'كلمة المرور',
+    'date_bithday'                      => 'تاريخ الميلاد',
     'ID'                                =>'رقم الهوية',
     'passport'                          =>'رقم جواز السفر',
     'phone'                             => 'رقم الهاتف',
@@ -117,5 +118,9 @@ return [
     'description'                       => 'البيان',
     'edit_fee_invoice'                  => 'تعديل فاتورة دراسية',
     'receipts'                          => 'سندات القبض',
-    'receipt'                           => 'سند قبض'
+    'receipt'                           => 'سند قبض',
+    'processFee'                        => 'انسحاب',
+    'payments'                          => 'سندات الصرف',
+    'payment'                           => 'سند الصرف',
+    'student_balance'                   => 'رصيد الطالب'
 ];

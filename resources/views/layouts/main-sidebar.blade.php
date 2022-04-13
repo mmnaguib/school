@@ -61,6 +61,8 @@
                             <li> <a href="{{ route('fees.index') }}">@lang('site.accountants')</a> </li>
                             <li> <a href="{{ route('feesInvoices.index') }}">@lang('site.fee_invoice')</a></li>
                             <li> <a href="{{ route('receipts.index') }}">@lang('site.receipts')</a></li>
+                            <li> <a href="{{ route('processesFee.index') }}">@lang('site.processFee')</a></li>
+                            <li> <a href="{{ route('payment_students.index') }}">@lang('site.payments')</a></li>
                         </ul>
                     </li>
 

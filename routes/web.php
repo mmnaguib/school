@@ -8,6 +8,7 @@ use App\Http\Controllers\Students\PromotionController;
 use App\Http\Controllers\SectionsController;
 use App\Http\Controllers\Students\GraduatedController;
 use App\Http\Controllers\Students\PaymentController;
+use App\Http\Controllers\Students\ProcessingFeeController;
 use App\Http\Controllers\Students\ReceiptStudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\Students\StudentController;
@@ -56,5 +57,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
     Route::resource('fees', FeeContorller::class);
     Route::resource('feesInvoices', feeInvoicesController::class);
     Route::resource('receipts', ReceiptStudentController::class);
+    Route::resource('processesFee', ProcessingFeeController::class);
     Route::resource('payment_students', PaymentController::class);
 });
