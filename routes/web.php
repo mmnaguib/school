@@ -1,17 +1,20 @@
 <?php
 
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\ExamContoller;
 use App\Http\Controllers\Students\FeeContorller;
 use App\Http\Controllers\Students\feeInvoicesController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\Students\PromotionController;
 use App\Http\Controllers\SectionsController;
+use App\Http\Controllers\Students\AttendanceController;
 use App\Http\Controllers\Students\GraduatedController;
 use App\Http\Controllers\Students\PaymentController;
 use App\Http\Controllers\Students\ProcessingFeeController;
 use App\Http\Controllers\Students\ReceiptStudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\Students\StudentController;
+use App\Http\Controllers\SubjectsController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -59,4 +62,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(),'middleware' => [ 'lo
     Route::resource('receipts', ReceiptStudentController::class);
     Route::resource('processesFee', ProcessingFeeController::class);
     Route::resource('payment_students', PaymentController::class);
+    Route::resource('attendance', AttendanceController::class);
+    Route::resource('subjects', SubjectsController::class);
+    Route::resource('exams', ExamContoller::class);
 });

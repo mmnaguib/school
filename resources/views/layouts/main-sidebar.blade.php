@@ -65,7 +65,15 @@
                             <li> <a href="{{ route('payment_students.index') }}">@lang('site.payments')</a></li>
                         </ul>
                     </li>
-
+                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
+                        <i style="color:#6c757d !important;font-size:14px" class="ti-user"></i><a style="display: inline" href="{{ route('attendance.index') }}">@lang('site.attendance')</a>
+                    </li>
+                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
+                        <i style="color:#6c757d !important;font-size:14px" class="ti-user"></i><a style="display: inline" href="{{ route('subjects.index') }}">@lang('site.subjects')</a>
+                    </li>
+                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
+                        <i style="color:#6c757d !important;font-size:14px" class="ti-user"></i><a style="display: inline" href="{{ route('exams.index') }}">@lang('site.exams')</a>
+                    </li>
                 </ul>
             </div>
         </div>

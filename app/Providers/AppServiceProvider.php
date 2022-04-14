@@ -2,6 +2,11 @@
 
 namespace App\Providers;
 
+use App\Repository\Attendance\AttendanceRepository;
+use App\Repository\Attendance\attendanceRepositoryInterface;
+use App\Repository\Attendance\AttendanceRepositoryInterface as AttendanceAttendanceRepositoryInterface;
+use App\Repository\Exam\ExamRepository;
+use App\Repository\Exam\ExamRepositoryInterface;
 use App\Repository\Fee\feeRepository;
 use App\Repository\Fee\feeRepositoryInterface;
 use App\Repository\FeeInvoices\FeeInvoicesRepository;
@@ -22,6 +27,9 @@ use App\Repository\TeacherRepositoryInterface;
 use App\Repository\TeacherRepository;
 use App\Repository\Students\StudentRepositoryInterface;
 use App\Repository\Students\StudentRepository;
+use App\Repository\Subjects\SubjectRepository;
+use App\Repository\Subjects\SubjectRepositoryInterface;
+
 class AppServiceProvider extends ServiceProvider
 {
     public function register()
@@ -35,6 +43,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ReceiptStudentRepositoryInterface::class,ReceiptStudentRepository::class);
         $this->app->bind(PaymentRepositoryInterface::class,PaymentRepository::class);
         $this->app->bind(ProcessFeeRepositoryInterface::class, ProcessFeeRepository::class);
+        $this->app->bind(AttendanceAttendanceRepositoryInterface::class, AttendanceRepository::class);
+        $this->app->bind(SubjectRepositoryInterface::class, SubjectRepository::class);
+        $this->app->bind(ExamRepositoryInterface::class, ExamRepository::class);
     }
     public function boot()
     {
