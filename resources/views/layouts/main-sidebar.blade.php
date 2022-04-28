@@ -71,8 +71,29 @@
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
                         <i style="color:#6c757d !important;font-size:14px" class="ti-user"></i><a style="display: inline" href="{{ route('subjects.index') }}">@lang('site.subjects')</a>
                     </li>
-                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">
-                        <i style="color:#6c757d !important;font-size:14px" class="ti-user"></i><a style="display: inline" href="{{ route('exams.index') }}">@lang('site.exams')</a>
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#exams">
+                            <div class="pull-left"><i class="ti-user"></i><span class="right-nav-text">@lang('site.quizes')</span>
+                            </div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="exams" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('quizes.index') }}">@lang('site.quizes')</a> </li>
+                            <li> <a href="{{ route('questions.index') }}">@lang('site.Questions')</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#zoom_meeting">
+                            <div class="pull-left"><i class="ti-user"></i><span class="right-nav-text">@lang('site.zoom_meeting')</span>
+                            </div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="zoom_meeting" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('zoom.index') }}">@lang('site.zoom_meeting')</a> </li>
+                            <li> <a href="{{ route('questions.index') }}">@lang('site.Questions')</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
